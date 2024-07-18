@@ -1,6 +1,7 @@
 package com.sparta.myshop.cart;
 
 import com.sparta.myshop.cart.dto.CartItemResponseDto;
+import com.sparta.myshop.cart.dto.CartItemResponseRequestDto;
 import com.sparta.myshop.product.Product;
 import com.sparta.myshop.product.ProductRepository;
 import com.sparta.myshop.user.User;
@@ -25,8 +26,9 @@ public class CartService {
     }
 
     public CartItemResponseDto getCartInfo(Long userId) {
-        List<CartItem> cartItems = cartRepository.findByUser_Id(userId);
-        return new CartItemResponseDto(cartItems);
+        List<CartItemResponseRequestDto> cartItemResponseRequestDto = cartRepository.findByUser_Id(userId).stream().map(CartItemResponseRequestDto::new).toList();
+
+        return new CartItemResponseDto(cartItemResponseRequestDto);
     }
 
     public void updateQuantity(Long userId, Long productId, int quantity) {

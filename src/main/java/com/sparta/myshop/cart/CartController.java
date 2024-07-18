@@ -1,10 +1,12 @@
 package com.sparta.myshop.cart;
 
 import com.sparta.myshop.cart.dto.CartItemResponseDto;
+import com.sparta.myshop.cart.dto.CartItemResponseRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

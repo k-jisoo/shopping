@@ -13,16 +13,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class CartItem {
 
-    @EmbeddedId
-    private CartItemId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
-    @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @MapsId("productId")
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -37,14 +36,4 @@ public class CartItem {
     public void UpdateQuantity(int quantity){
         this.quantity = quantity;
     }
-}
-
-@Embeddable
-class CartItemId implements Serializable {
-
-    @Column(name = "user_id")
-    private Long userId;
-
-    @Column(name = "product_id")
-    private Long productId;
 }
